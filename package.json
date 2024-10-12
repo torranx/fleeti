@@ -8,10 +8,13 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
     "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
     "lint": "npm-run-all --parallel lint:*",
     "lint:frontend": "npm run lint --workspace=frontend",
+    "lint:backend": "npm run lint --workspace=backend",
     "lint-fix": "npm-run-all --parallel lint-fix:*",
-    "lint-fix:frontend": "npm run lint:fix --workspace=frontend"
+    "lint-fix:frontend": "npm run lint:fix --workspace=frontend",
+    "lint-fix:backend": "npm run lint:fix --workspace=backend"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"
