@@ -7,17 +7,17 @@ WORKDIR /app
 # Copy the root-level tsconfig.base.json file into the container
 COPY tsconfig.base.json /tsconfig.base.json
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy the backend package.json and package-lock.json files into the container
+COPY backend/package*.json ./
 
-# Install dependencies
+# Install dependencies for the backend
 RUN npm install
 
-# Copy the application source code
-COPY . .
+# Copy the rest of the backend application code
+COPY backend/ .
 
 # Expose the port the app will run on
 EXPOSE 3001
 
-# Start the server
+# Start the backend server
 CMD ["npm", "run", "dev"]
