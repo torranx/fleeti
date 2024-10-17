@@ -1,0 +1,13 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      run: npm run lint-fix
+      skip:
+        - merge
+        - rebase
+
+pre-push:
+  commands:
+    lint:
+      run: npm run lint
