@@ -2,5 +2,8 @@
   "extends": ["../.eslintrc.base.json", "next/core-web-vitals"],
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react/jsx-curly-spacing": [2, { "when": "always", "children": true }]
   }
 }
