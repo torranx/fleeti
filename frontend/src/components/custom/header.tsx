@@ -5,6 +5,7 @@ import { Dialog, DialogPanel } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import Image from "next/image"
+import { Button } from "../ui/button"
 
 const navigation = [
   { name: "Features", href: "/#features-section" },
@@ -48,8 +49,10 @@ export default function Header() {
           )) }
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href="/login">
+            <Button variant="link" className="text-sm font-semibold">
               Log in <span aria-hidden="true">&rarr;</span>
+            </Button>
           </Link>
         </div>
       </nav>
