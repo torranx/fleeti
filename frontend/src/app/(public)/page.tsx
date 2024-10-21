@@ -1,4 +1,4 @@
-import Header from "@/components/custom/header"
+import Heading2 from "@/components/custom/heading2"
 import { AdjustmentsHorizontalIcon, CloudArrowUpIcon, LockClosedIcon, ShieldCheckIcon } from "@heroicons/react/24/outline"
 
 const features = [
@@ -31,8 +31,6 @@ const features = [
 export default function LandingPage() {
   return (
     <div className="bg-white">
-      <Header />
-
       <section className="relative isolate px-6 pt-14 lg:px-8">
         <div
           aria-hidden="true"
@@ -80,10 +78,10 @@ export default function LandingPage() {
           />
         </div>
       </section>
-      <section className="bg-white pt-12 pb-24 sm:pb-32">
+      <section className="bg-white pt-12 pb-24 sm:pb-32" id="features-section">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-indigo-600">Set, Share, Expire</h2>
+            <Heading2 className="text-indigo-600">Set, Share, Expire</Heading2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Full control over content accessibility
             </p>
@@ -111,9 +109,7 @@ export default function LandingPage() {
       <section className="bg-indigo-700">
         <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Get Started Today
-            </h2>
+            <Heading2 className="text-white">Get started with ExpireEase</Heading2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-indigo-200">
               Ready to take control of your content? Start sharing with ExpireEase and make sure your content expires on your terms.
             </p>
