@@ -4,7 +4,9 @@ export default function AboutUs() {
   return (
     <section>
       <div className="mx-auto max-w-7xl px-6 pt-16 sm:pt-28 lg:px-8 lg:pt-36">
-        <Heading1 className="text-center">Welcome to ExpireEase!</Heading1>
+        <Heading1 className="text-center">
+          About ExpireEase
+        </Heading1>
         <div className="px-6 pt-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="mt-6 text-lg leading-8 text-gray-700">
