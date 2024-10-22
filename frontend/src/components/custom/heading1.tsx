@@ -7,11 +7,11 @@ export default function Heading1({
   ...props
 }: { children: string; className?: string } & React.HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h2
+    <h1
       className={ classNames("text-balance text-4xl font-bold tracking-tight sm:text-6xl", className) }
       { ...props }
     >
       { children }
-    </h2>
+    </h1>
   );
 }

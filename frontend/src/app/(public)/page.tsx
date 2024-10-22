@@ -7,25 +7,25 @@ const features = [
   {
     name: "Control Your Content ",
     description:
-      "Decide how long your files, links, or messages stay accessible with custom expiration rules, and let your content disappear when needed.",
+      "Decide how long your files, links, or messages remain accessible with custom expiration settings. Fleeti takes care of the rest, making your content disappear when you decide.",
     icon: LockClosedIcon,
   },
   {
     name: "Flexible Expiration Options",
     description:
-      "Select from time-based or view-based expirations, with more options coming soon.",
+      "Choose from time-based or view-based expirations, with more advanced options arriving soon.",
     icon: AdjustmentsHorizontalIcon,
   },
   {
-    name: "Simple & Secure Sharing",
+    name: "Effortless & Secure Sharing",
     description:
-      "Upload and share your content easily, knowing it will automatically expire based on your rules.",
+      "Upload and share your content seamlessly, knowing it will self-destruct according to your set rules.",
     icon: CloudArrowUpIcon,
   },
   {
     name: "Privacy & Security",
     description:
-      "Your shared content is protected with end-to-end encryption, ensuring your privacy and control over accessibility.",
+      "Your content stays protected with end-to-end encryption, offering peace of mind and control over who can access what you share.",
     icon: ShieldCheckIcon,
   },
 ]
@@ -37,10 +37,10 @@ export default function LandingPage() {
         <div className="mx-auto max-w-3xl py-36 sm:py-46 lg:py-48">
           <div className="text-center">
             <h1 className="text-balance text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Take control of your shared content
+              Make it last only as long as you need
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              With fleeti, you decide how long your files, links, or messages stay accessible. Set the rules, and your content disappears when it&apos;s no longer needed.
+              With <strong>Fleeti</strong>, you decide how long your files, links, or messages stay accessible. Set the rules, and your content disappears when it&apos;s no longer needed.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link href="/signup">
@@ -60,12 +60,12 @@ export default function LandingPage() {
       <section className="bg-white pt-12 pb-24 sm:pb-32" id="features-section">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <Heading2 className="text-primary">Set, Share, Expire</Heading2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-700 sm:text-4xl">
-              Full control over content accessibility
+            <Heading2 className="text-gray-700 !text-base">Share it. Forget it</Heading2>
+            <p className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Full control over your content’s lifespan
             </p>
-            <p className="mt-6 text-lg leading-8 text-gray-700">
-              Easily set rules for when your content expires. Share it confidently, knowing fleeti will automatically remove it when the time comes.
+            <p className="mt-4 text-lg leading-8 text-gray-700">
+              Easily configure when your content should expire. Share with confidence, knowing that <strong>Fleeti</strong> ensures automatic removal when the time is right.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -88,9 +88,9 @@ export default function LandingPage() {
       <section className="bg-accent">
         <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <Heading2 className="text-primary">Get started with fleeti</Heading2>
+            <Heading2 className="text-primary">Get started with Fleeti</Heading2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-700">
-              Ready to take control of your content? Start sharing with fleeti and make sure your content expires on your terms.
+              Ready to take control of your content? Start sharing with Fleeti and make sure your content expires on your terms.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link href="#">

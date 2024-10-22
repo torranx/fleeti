@@ -17,7 +17,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode}) {
       </Link>
       <div className="text-center text-gray-600 mt-4 mb-5">
         <p>
-          Welcome to fleeti!
+          Welcome to Fleeti!
         </p>
         <p>
           Please log in or sign up to continue.

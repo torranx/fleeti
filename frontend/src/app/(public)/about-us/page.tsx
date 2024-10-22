@@ -5,14 +5,14 @@ export default function AboutUs() {
     <section>
       <div className="mx-auto max-w-7xl px-6 pt-16 sm:pt-28 lg:px-8 lg:pt-36">
         <Heading1 className="text-center">
-          About fleeti
+          About Fleeti
         </Heading1>
         <div className="px-6 pt-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="mt-6 text-lg leading-8 text-gray-700">
               { /* TODO: add name */ }
               My name is [name], and I am the sole developer behind this platform.
-              fleeti was born out of a simple yet powerful idea:
+              Fleeti was born out of a simple yet powerful idea:
               <strong>
                 { " " }to give users control over their shared content and
                 ensure that it only stays available for as long as needed
@@ -27,14 +27,14 @@ export default function AboutUs() {
             <div>
               <p>
                 As a solo developer, I’m passionate about building tools that simplify life and solve real-world problems.
-                With fleeti, my goal is to provide a secure, user-friendly solution for temporary content sharing.
+                With Fleeti, my goal is to provide a secure, user-friendly solution for temporary content sharing.
                 Whether you’re sending confidential files, temporary links, or time-sensitive messages,
-                fleeti helps ensure that your information disappears when it’s no longer needed.
+                Fleeti helps ensure that your information disappears when it’s no longer needed.
               </p>
               <p className="mt-8">
-                From brainstorming initial concepts to writing each line of code, every aspect of fleeti is a reflection
+                From brainstorming initial concepts to writing each line of code, every aspect of Fleeti is a reflection
                 of my commitment to creating a seamless user experience. As both the developer and the user, I understand the
-                importance of keeping things simple yet powerful, and I’ve worked hard to ensure that fleeti is intuitive,
+                importance of keeping things simple yet powerful, and I’ve worked hard to ensure that Fleeti is intuitive,
                 reliable, and adaptable to your needs.
               </p>
             </div>
@@ -42,7 +42,7 @@ export default function AboutUs() {
               <p>
                 Building this platform has been an incredible journey, and I’m excited to keep expanding and
                 improving it with new features based on user feedback. Thank you for being a part of this journey,
-                and I hope fleeti makes your digital sharing safer and more manageable.
+                and I hope Fleeti makes your digital sharing safer and more manageable.
               </p>
               <p className="mt-8">
                 { /* TODO: add email */ }

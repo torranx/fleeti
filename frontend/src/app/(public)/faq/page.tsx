@@ -3,17 +3,17 @@ import Heading1 from "@/components/custom/heading1"
 const faqs = [
   {
     id: 1,
-    question: "What is fleeti?",
-    answer: "fleeti is a platform designed for sharing self-destructing content like messages, files, or links. It allows you to set expiration rules based on time, view counts, or events, ensuring that your content is only accessible when needed."
+    question: "What is Fleeti?",
+    answer: "Fleeti is a platform designed for sharing self-destructing content like messages, files, or links. It allows you to set expiration rules based on time, view counts, or events, ensuring that your content is only accessible when needed."
   },
   {
     id: 2,
-    question: "How do I get started with fleeti?",
+    question: "How do I get started with Fleeti?",
     answer: "Getting started is easy! Simply create an account, set up your content expiration rules, and share the generated link. You can track your shared content from your dashboard."
   },
   {
     id: 3,
-    question: "Do I need an account to use fleeti?",
+    question: "Do I need an account to use Fleeti?",
     answer: "Yes, an account is required to share content with custom expiration rules. It allows you to manage your shared items, update settings, and track expiration statuses securely."
   },
   {
@@ -24,7 +24,7 @@ const faqs = [
   {
     id: 5,
     question: "What types of content can I share?",
-    answer: "You can share text messages, files, and links. fleeti supports a range of file types and ensures your content remains secure until it expires."
+    answer: "You can share text messages, files, and links. Fleeti supports a range of file types and ensures your content remains secure until it expires."
   },
   {
     id: 6,
@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     id: 7,
-    question: "Is my data secure with fleeti?",
+    question: "Is my data secure with Fleeti?",
     answer: "Yes, we take security seriously. All files are stored using AWS S3, and user data is encrypted. Your content is only accessible until it reaches the expiration criteria you've set."
   },
   {
@@ -48,7 +48,7 @@ const faqs = [
   },
   {
     id: 10,
-    question: "Does fleeti support notifications for expiring content?",
+    question: "Does Fleeti support notifications for expiring content?",
     answer: "Yes, you'll receive notifications when your content is nearing expiration or when it has expired. This helps you stay informed about the status of your shared items."
   },
   {
@@ -58,13 +58,13 @@ const faqs = [
   },
   // {
   //   id: 12,
-  //   question: "Is fleeti free to use?",
+  //   question: "Is Fleeti free to use?",
   //   answer: "We offer a free tier that includes basic features like time-based and view-based expiration. For more advanced features, we offer premium plans with added capabilities."
   // },
   {
     id: 13,
     question: "How do I contact support?",
-    answer: "If you have any issues or questions, you can reach out to us through the contact form on our website or email us directly at support@fleeti.com. We're here to help!"
+    answer: "If you have any issues or questions, you can reach out to us through the contact form on our website or email us directly at support@Fleeti.com. We're here to help!"
   }
 ];
 
