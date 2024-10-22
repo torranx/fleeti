@@ -10,6 +10,13 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Fleeti - Login to Your Account",
+  description: "Access your fleeti account to manage your shared content, track expirations, and adjust your settings.",
+  keywords: "fleeti login, secure login, access account, manage content, content expiration"
+}
 
 export default function Login() {
   return (

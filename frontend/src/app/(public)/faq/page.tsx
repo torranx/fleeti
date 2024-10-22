@@ -1,4 +1,11 @@
 import Heading1 from "@/components/custom/heading1"
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Fleeti - Frequently Asked Questions",
+  description: "Find answers to common questions about using fleeti, managing expiration rules, privacy features, and more.",
+  keywords: "fleeti FAQ, fleeti help, expiration rules, privacy, content sharing, self-destructing messages, support"
+}
 
 const faqs = [
   {

@@ -10,6 +10,13 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Fleeti - Create an Account",
+  description: "Join fleeti to share your content with time-based expiration options. Create an account and start sharing securely.",
+  keywords: "fleeti signup, create account, secure sharing, content expiration, privacy, registration"
+}
 
 export default function Signup() {
   return (

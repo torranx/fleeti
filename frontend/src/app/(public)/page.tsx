@@ -1,7 +1,14 @@
 import Heading2 from "@/components/custom/heading2"
 import { Button } from "@/components/ui/button"
 import { AdjustmentsHorizontalIcon, CloudArrowUpIcon, LockClosedIcon, ShieldCheckIcon } from "@heroicons/react/24/outline"
+import { Metadata } from "next"
 import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Fleeti - Share it. Forget it",
+  description: "Share your files, links, and messages with confidence. fleeti makes sure your content automatically disappears after a set time or views, keeping your data safe and temporary.",
+  keywords: "fleeti, temporary content, self-destructing messages, secure sharing, content expiration, privacy, file sharing"
+}
 
 const features = [
   {

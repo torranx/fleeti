@@ -1,4 +1,11 @@
 import Heading1 from "@/components/custom/heading1"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Fleeti - Secure, Temporary Content Sharing",
+  description: "Learn more about fleeti, our mission to keep your content private and temporary, and how we ensure secure, user-controlled content sharing.",
+  keywords: "about fleeti, secure sharing, content expiration, privacy-first platform, self-destructing content"
+}
 
 export default function AboutUs() {
   return (
