@@ -40,7 +40,7 @@ export default function LandingPage() {
               Take control of your shared content
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              With ExpireEase, you decide how long your files, links, or messages stay accessible. Set the rules, and your content disappears when it&apos;s no longer needed.
+              With fleeti, you decide how long your files, links, or messages stay accessible. Set the rules, and your content disappears when it&apos;s no longer needed.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link href="/signup">
@@ -65,7 +65,7 @@ export default function LandingPage() {
               Full control over content accessibility
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-700">
-              Easily set rules for when your content expires. Share it confidently, knowing ExpireEase will automatically remove it when the time comes.
+              Easily set rules for when your content expires. Share it confidently, knowing fleeti will automatically remove it when the time comes.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -88,9 +88,9 @@ export default function LandingPage() {
       <section className="bg-accent">
         <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <Heading2 className="text-primary">Get started with ExpireEase</Heading2>
+            <Heading2 className="text-primary">Get started with fleeti</Heading2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-700">
-              Ready to take control of your content? Start sharing with ExpireEase and make sure your content expires on your terms.
+              Ready to take control of your content? Start sharing with fleeti and make sure your content expires on your terms.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link href="#">
