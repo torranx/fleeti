@@ -4,8 +4,8 @@ import { useState } from "react"
 import { Bars3Icon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "../ui/button"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
+import { Button } from "../ui-lib/button"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui-lib/sheet"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
 const navigation = [

@@ -1,15 +1,15 @@
 import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui-lib/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui-lib/card"
+import { Input } from "@/components/ui-lib/input"
+import { Label } from "@/components/ui-lib/label"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

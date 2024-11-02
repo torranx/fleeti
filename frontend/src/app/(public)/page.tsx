@@ -1,5 +1,5 @@
 import Heading2 from "@/components/custom/heading2"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui-lib/button"
 import { AdjustmentsHorizontalIcon, CloudArrowUpIcon, LockClosedIcon, ShieldCheckIcon } from "@heroicons/react/24/outline"
 import { Metadata } from "next"
 import Link from "next/link"

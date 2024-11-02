@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function AuthLayout({ children }: { children: React.ReactNode}) {
   return (
-    <section className="flex justify-center items-center flex-col h-svh">
-      <Link href="/" className="-m-1.5 p-1.5">
+    <section className="flex justify-center items-center flex-col min-h-screen py-12">
+      <Link href="/" className="-m-1.5 p-1.5 mb-5">
         <span className="sr-only">Your Company</span>
         { /* TODO: update logo */ }
         <Image
@@ -15,14 +15,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode}) {
           height={ 32 }
         />
       </Link>
-      <div className="text-center text-gray-600 mt-4 mb-5">
-        <p>
-          Welcome to Fleeti!
-        </p>
-        <p>
-          Please log in or sign up to continue.
-        </p>
-      </div>
       { children }
     </section>
   )
