@@ -44,7 +44,9 @@ export default function SignupForm() {
   }
 
   const handleEmailSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    if (!isEmailSet) {
+      event.preventDefault();
+    }
 
     const isEmailValidated = await form.trigger("email", { shouldFocus: true });
 
@@ -70,21 +72,24 @@ export default function SignupForm() {
           ) }
         />
         {
+          // TODO: add password tooltip for password requirements
           isEmailSet &&
           <FormField
             control={ form.control }
             name="password"
             render={ ({ field }) => (
-              <FormItem className="relative">
+              <FormItem>
                 <FormLabel className="font-medium">Password</FormLabel>
                 <FormControl>
-                  <Input className="!mt-1" type={ showPassword ? "text" : "password" } { ...field } />
+                  <div className="relative">
+                    <Input className="!mt-1" type={ showPassword ? "text" : "password" } { ...field } />
+                    {
+                      showPassword
+                        ? <EyeIcon onClick={ () => setShowPassword(false) } className="text-gray-700 cursor-pointer absolute right-3 w-4 bottom-3" />
+                        : <EyeSlashIcon onClick={ () => setShowPassword(true) } className="text-gray-700 cursor-pointer absolute right-3 w-4 bottom-3" />
+                    }
+                  </div>
                 </FormControl>
-                {
-                  showPassword
-                    ? <EyeIcon onClick={ () => setShowPassword(false) } className="text-gray-700 cursor-pointer absolute right-3 w-4 bottom-3" />
-                    : <EyeSlashIcon onClick={ () => setShowPassword(true) } className="text-gray-700 cursor-pointer absolute right-3 w-4 bottom-3" />
-                }
                 <FormMessage />
               </FormItem>
             ) }
