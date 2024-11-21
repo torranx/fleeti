@@ -4,9 +4,13 @@ import bcrypt from "bcrypt";
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 class UserController {
-  static async registerUser(req: Request, res: Response) {
+  static async registerUser(req: Request, res: Response): Promise<void> {
     try {
       const { email, password } = req.body;
+
+      if (await UserController.isExistingUser(email)) {
+        res.status(400).json({ message: "User already exists" });
+      }
 
       const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -30,17 +34,24 @@ class UserController {
     }
   }
 
-  static async checkEmail(req: Request, res: Response) {
+  static async checkEmail(req: Request, res: Response): Promise<void> {
     try {
-      // this is already validated by the emailValidation middleware
       const { email } = req.body;
 
-      res.status(200).json({ email, exists: false });
+      const exists = await UserController.isExistingUser(email);
+
+      res.status(200).json({ email, exists });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Failed to check if user exists" });
     }
   }
+
+  static async isExistingUser(email: string): Promise<boolean> {
+    const existingUser = await User.findOne({ email }).exec();
+
+    return !!existingUser;
+  }
 }
 
-export default UserController
+export default UserController;
