@@ -1,9 +1,9 @@
 {
-  "extends": "../tsconfig.base.json",
-  "compilerOptions": {
-    "isolatedModules": false,
-    "module": "commonjs"
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+	"extends": "../tsconfig.base.json",
+	"compilerOptions": {
+		"isolatedModules": false,
+		"module": "commonjs"
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"],
 }

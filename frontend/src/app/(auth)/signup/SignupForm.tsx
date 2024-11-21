@@ -6,9 +6,10 @@ import { Button } from "@/components/ui-lib/button"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import axios from "axios"
+import axios from "@/lib/axios"
 import { useState } from "react"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
+import { handleFormError } from "@/utils/handleFormError"
 
 const formSchema = z.object({
   email: z.string()
@@ -18,7 +19,7 @@ const formSchema = z.object({
     .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
     .regex(/[0-9]/, "Password must contain at least one number")
     .regex(/[^a-zA-Z0-9]/, "Password must contain at least one symbol"),
-})
+});
 
 export default function SignupForm() {
   const [ showPassword, setShowPassword ] = useState(false);
@@ -34,7 +35,7 @@ export default function SignupForm() {
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) =>{
     try {
-      const response = await axios.post("/api/register", values);
+      const response = await axios.post("/api/auth/register", values);
 
       console.log("User registered successfully:", response.data);
     } catch (error) {
@@ -44,14 +45,21 @@ export default function SignupForm() {
   }
 
   const handleEmailSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!isEmailSet) {
-      event.preventDefault();
-    }
+    event.preventDefault();
 
     const isEmailValidated = await form.trigger("email", { shouldFocus: true });
 
-    if (isEmailValidated) {
+    if (!isEmailValidated) {
+      return;
+    }
+
+    try {
+      await axios.post("/api/check-email", { email: form.getValues("email") });
+
       setIsEmailSet(true);
+      setTimeout(() => form.setFocus("password"), 200);
+    } catch (error) {
+      handleFormError(error, form.setError);
     }
   }
 
@@ -98,7 +106,7 @@ export default function SignupForm() {
         <Button
           className="w-full"
           type={ isEmailSet ? "submit" : "button" }
-          onClick={ handleEmailSubmit }
+          onClick={ isEmailSet ? undefined : handleEmailSubmit }
         >
           { isEmailSet ? "Create account" : "Continue" }
         </Button>

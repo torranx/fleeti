@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the root-level tsconfig.base.json file into the container
 COPY tsconfig.base.json /tsconfig.base.json
 
+# Copy the root-level .eslintrc.base.json file into the container
+COPY .eslintrc.base.json /.eslintrc.base.json
+
 # Copy the backend package.json and package-lock.json files into the container
 COPY backend/package*.json ./
 
