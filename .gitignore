@@ -15,6 +15,9 @@ node_modules
 /frontend/.next/
 /frontend/out/
 
+# backend
+/backend/keys/
+
 # production
 /build
 
