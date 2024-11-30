@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import userRoutes from "./routes/userRoutes"
+import authRoutes from "./routes/authRoutes"
 import cors from "cors"
 
 if (process.env.NODE_ENV === "production") {
@@ -26,9 +27,11 @@ async function startServer() {
     app.use(cors({
       origin: "http://localhost:3000",
       methods: [ "GET", "POST", "PUT", "DELETE" ],
+      credentials: true,
     }));
 
-    app.use("/api", userRoutes);
+    app.use("/api/users", userRoutes);
+    app.use("/api/auth", authRoutes);
 
     // Start Express server
     app.listen(port, () => {
