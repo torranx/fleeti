@@ -6,10 +6,11 @@ import { Button } from "@/components/ui-lib/button"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import axios from "@/lib/axios"
 import { useState } from "react"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 import { handleFormError } from "@/utils/handleFormError"
+import { useRouter } from "next/navigation"
+import apiClient from "@/lib/apiClient"
 
 const formSchema = z.object({
   email: z.string()
@@ -22,6 +23,7 @@ const formSchema = z.object({
 });
 
 export default function SignupForm() {
+  const router = useRouter();
   const [ showPassword, setShowPassword ] = useState(false);
   const [ isEmailSet, setIsEmailSet ] = useState(false);
 
@@ -35,9 +37,14 @@ export default function SignupForm() {
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) =>{
     try {
-      const response = await axios.post("/api/auth/register", values);
+      const response = await apiClient.post("/auth/register", values);
 
-      console.log("User registered successfully:", response.data);
+      if (response.data.success) {
+        router.push("/dashboard");
+      } else {
+        console.error("Unexpected response:", response.data);
+        // Optionally, show an error message to the user using a toast or alert
+      }
     } catch (error) {
       console.error("Error registering user:", error);
       // Optionally, show an error message to the user using a toast or alert
@@ -54,10 +61,20 @@ export default function SignupForm() {
     }
 
     try {
-      await axios.post("/api/check-email", { email: form.getValues("email") });
+      const response = await apiClient.post("/users/check-email", { email: form.getValues("email") }, {
+        withCredentials: true,
+      });
+
+      if (response.data.exists) {
+        form.setError("email", { message: "Email is already in use" });
+        return;
+      }
 
       setIsEmailSet(true);
-      setTimeout(() => form.setFocus("password"), 200);
+      form.clearErrors();
+      setTimeout(() => {
+        form.setFocus("password")
+      }, 200);
     } catch (error) {
       handleFormError(error, form.setError);
     }

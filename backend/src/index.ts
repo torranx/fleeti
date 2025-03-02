@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import userRoutes from "./routes/userRoutes"
 import authRoutes from "./routes/authRoutes"
 import cors from "cors"
+import cookieParser from "cookie-parser"
 
 if (process.env.NODE_ENV === "production") {
   dotenv.config({ path: ".env.production" });
@@ -29,6 +30,8 @@ async function startServer() {
       methods: [ "GET", "POST", "PUT", "DELETE" ],
       credentials: true,
     }));
+
+    app.use(cookieParser());
 
     app.use("/api/users", userRoutes);
     app.use("/api/auth", authRoutes);

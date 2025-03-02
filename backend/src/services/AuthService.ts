@@ -1,26 +1,25 @@
 import { importPKCS8, importSPKI, JWTPayload, jwtVerify, KeyLike, SignJWT } from "jose";
-import { ObjectId } from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 import Session from "../models/session.model";
+import ms from "ms";
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export default class AuthService {
   static alg = "RS256";
-  static refreshTokenDuration = 7 * 24 * 60 * 60 * 1000;
-  static accessTokenDuration = 15 * 60 * 1000;
 
-  static async generateToken(id: ObjectId): Promise<{ accessToken: string, refreshToken: string }> {
+  static async generateToken(id: string): Promise<{ accessToken: string, refreshToken: string }> {
     const privateKey: KeyLike = await importPKCS8(process.env.JOSE_PRIVATE_KEY ?? "", AuthService.alg);
 
     const accessToken = await new SignJWT({ id })
       .setProtectedHeader({ alg: AuthService.alg })
       .setIssuedAt()
-      .setExpirationTime(AuthService.accessTokenDuration)
+      .setExpirationTime("1m")
       .sign(privateKey);
 
     const refreshToken = await new SignJWT({ id })
       .setProtectedHeader({ alg: AuthService.alg })
       .setIssuedAt()
-      .setExpirationTime(AuthService.refreshTokenDuration)
+      .setExpirationTime("7d")
       .sign(privateKey);
 
     return { accessToken, refreshToken };
@@ -36,12 +35,12 @@ export default class AuthService {
     }
   };
 
-  static async createSession(userId: ObjectId, refreshToken: string): Promise<void> {
+  static async createSession(userId: mongoose.Types.ObjectId, refreshToken: string): Promise<void> {
     try {
       const session = new Session({
         userId,
         refreshToken,
-        expiresAt: new Date(Date.now() + AuthService.refreshTokenDuration),
+        expiresAt: new Date(Date.now() + ms("7d")),
       });
 
       await session.save();
@@ -51,7 +50,7 @@ export default class AuthService {
     }
   }
 
-  static async updateSession(userId: ObjectId, refreshToken: string): Promise<void> {
+  static async updateSession(userId: mongoose.Types.ObjectId, refreshToken: string): Promise<void> {
     try {
       const session = await Session.findOne({ userId }).exec();
 
@@ -60,12 +59,21 @@ export default class AuthService {
       }
 
       session.refreshToken = refreshToken;
-      session.expiresAt = new Date(Date.now() + AuthService.refreshTokenDuration);
+      session.expiresAt = new Date(Date.now() + ms("7d"));
 
       await session.save();
     } catch (err) {
       console.error("Failed to update session:", err);
       throw new Error("Failed to update session");
+    }
+  }
+
+  static async deleteSession(userId: ObjectId): Promise<void> {
+    try {
+      await Session.findOneAndDelete({ userId }).exec();
+    } catch (err) {
+      console.error("Failed to delete session:", err);
+      throw new Error("Failed to delete session");
     }
   }
 }
