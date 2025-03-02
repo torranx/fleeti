@@ -1,21 +1,52 @@
-"use client"
+import { AppSidebar } from "@/components/app-sidebar"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui-lib/breadcrumb"
+import { Separator } from "@/components/ui-lib/separator"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui-lib/sidebar"
 
-import apiClient from "@/lib/apiClient";
-
-const logout = async () => {
-  try {
-    await apiClient.post("/auth/logout", {}, { withCredentials: true });
-    console.log("Logged out");
-  } catch (err) {
-    console.error("Failed to log out:", err);
-  }
-}
-
-export default function Dashboard() {
+export default function Page() {
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <button onClick={ logout }>Log out</button>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem className="hidden md:block">
+                <BreadcrumbLink href="#">components</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem className="hidden md:block">
+                <BreadcrumbLink href="#">ui</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>button.tsx</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4">
+          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div className="aspect-video rounded-xl bg-muted/50" />
+            <div className="aspect-video rounded-xl bg-muted/50" />
+            <div className="aspect-video rounded-xl bg-muted/50" />
+          </div>
+          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   )
 }

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserService from "../services/UserService";
+import UserService from "../services/UserService.js";
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 class UserController {

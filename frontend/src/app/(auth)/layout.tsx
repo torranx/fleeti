@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode}) {
         { /* TODO: update logo */ }
         <Image
           alt=""
-          src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+          src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
           className="h-8 w-auto"
           width={ 32 }
           height={ 32 }

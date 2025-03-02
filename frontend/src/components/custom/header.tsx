@@ -25,7 +25,7 @@ export default function Header() {
             <span className="sr-only">Your Company</span>
             <Image
               alt=""
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+              src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
               className="h-8 w-auto"
               width={ 32 }
               height={ 32 }
@@ -54,7 +54,7 @@ export default function Header() {
                   <span className="sr-only">Your Company</span>
                   <Image
                     alt=""
-                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+                    src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                     className="h-8 w-auto"
                     width={ 12 }
                     height={ 12 }

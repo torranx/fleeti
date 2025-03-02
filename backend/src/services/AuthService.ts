@@ -1,6 +1,6 @@
-import { importPKCS8, importSPKI, JWTPayload, jwtVerify, KeyLike, SignJWT } from "jose";
+import { importPKCS8, importSPKI, JWTPayload, jwtVerify, SignJWT } from "jose";
 import mongoose, { ObjectId } from "mongoose";
-import Session from "../models/session.model";
+import Session from "../models/session.model.js";
 import ms from "ms";
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
@@ -8,7 +8,7 @@ export default class AuthService {
   static alg = "RS256";
 
   static async generateToken(id: string): Promise<{ accessToken: string, refreshToken: string }> {
-    const privateKey: KeyLike = await importPKCS8(process.env.JOSE_PRIVATE_KEY ?? "", AuthService.alg);
+    const privateKey: CryptoKey = await importPKCS8(process.env.JOSE_PRIVATE_KEY ?? "", AuthService.alg);
 
     const accessToken = await new SignJWT({ id })
       .setProtectedHeader({ alg: AuthService.alg })

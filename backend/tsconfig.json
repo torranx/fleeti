@@ -1,8 +1,12 @@
 {
 	"extends": "../tsconfig.base.json",
 	"compilerOptions": {
-		"isolatedModules": false,
-		"module": "commonjs"
+		"module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true
 	},
 	"include": ["src/**/*.ts", "scripts"],
 	"exclude": ["node_modules"]

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import AuthService from "../services/AuthService";
-import Session from "../models/session.model";
+import AuthService from "../services/AuthService.js";
+import Session from "../models/session.model.js";
 import mongoose, { ObjectId } from "mongoose";
-import UserService from "../services/UserService";
-import User from "../models/user.model";
+import UserService from "../services/UserService.js";
+import User from "../models/user.model.js";
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export default class AuthController {

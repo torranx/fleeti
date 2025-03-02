@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { emailValidation } from "../common/emailValidation";
+import { emailValidation } from "../common/emailValidation.js";
 
 export const registerValidation = [
   ...emailValidation,

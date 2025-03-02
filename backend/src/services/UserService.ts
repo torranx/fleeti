@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export default class UserService {
