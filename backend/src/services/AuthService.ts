@@ -3,39 +3,38 @@ import mongoose, { ObjectId } from "mongoose";
 import Session from "../models/session.model.js";
 import ms from "ms";
 
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export default class AuthService {
-  static alg = "RS256";
+const AuthService = {
+  ALG: "RS256",
 
-  static async generateToken(id: string): Promise<{ accessToken: string, refreshToken: string }> {
-    const privateKey: CryptoKey = await importPKCS8(process.env.JOSE_PRIVATE_KEY ?? "", AuthService.alg);
+  generateToken: async (id: string): Promise<{ accessToken: string, refreshToken: string }> => {
+    const privateKey: CryptoKey = await importPKCS8(process.env.JOSE_PRIVATE_KEY ?? "", AuthService.ALG);
 
     const accessToken = await new SignJWT({ id })
-      .setProtectedHeader({ alg: AuthService.alg })
+      .setProtectedHeader({ alg: AuthService.ALG })
       .setIssuedAt()
       .setExpirationTime("1m")
       .sign(privateKey);
 
     const refreshToken = await new SignJWT({ id })
-      .setProtectedHeader({ alg: AuthService.alg })
+      .setProtectedHeader({ alg: AuthService.ALG })
       .setIssuedAt()
       .setExpirationTime("7d")
       .sign(privateKey);
 
     return { accessToken, refreshToken };
-  }
+  },
 
-  static async verifyToken(token: string): Promise<JWTPayload> {
+  verifyToken: async (token: string): Promise<JWTPayload> => {
     try {
-      const { payload } = await jwtVerify(token, await importSPKI(process.env.JOSE_PUBLIC_KEY ?? "", AuthService.alg));
+      const { payload } = await jwtVerify(token, await importSPKI(process.env.JOSE_PUBLIC_KEY ?? "", AuthService.ALG));
       return payload;
     } catch (error) {
       console.error("Token verification failed:", error);
       throw new Error("Unauthorized");
     }
-  };
+  },
 
-  static async createSession(userId: mongoose.Types.ObjectId, refreshToken: string): Promise<void> {
+  createSession: async (userId: mongoose.Types.ObjectId, refreshToken: string): Promise<void> => {
     try {
       const session = new Session({
         userId,
@@ -48,9 +47,9 @@ export default class AuthService {
       console.error("Failed to create session:", err);
       throw new Error("Failed to create session");
     }
-  }
+  },
 
-  static async updateSession(userId: mongoose.Types.ObjectId, refreshToken: string): Promise<void> {
+  updateSession: async (userId: mongoose.Types.ObjectId, refreshToken: string): Promise<void> => {
     try {
       const session = await Session.findOne({ userId }).exec();
 
@@ -66,9 +65,9 @@ export default class AuthService {
       console.error("Failed to update session:", err);
       throw new Error("Failed to update session");
     }
-  }
+  },
 
-  static async deleteSession(userId: ObjectId): Promise<void> {
+  deleteSession: async (userId: ObjectId): Promise<void> => {
     try {
       await Session.findOneAndDelete({ userId }).exec();
     } catch (err) {
@@ -77,3 +76,5 @@ export default class AuthService {
     }
   }
 }
+
+export default AuthService;

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import UserController from "../controllers/UserController";
-import { emailValidation } from "../middleware/validations/common/emailValidation";
-import { validationErrorHandler } from "../middleware/validations/validationErrorHandler";
+import UserController from "../controllers/UserController.js";
+import { emailValidation } from "../middleware/validations/common/emailValidation.js";
+import { validationErrorHandler } from "../middleware/validations/validationErrorHandler.js";
 
 const router = Router();
 

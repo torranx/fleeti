@@ -5,12 +5,11 @@ import mongoose, { ObjectId } from "mongoose";
 import UserService from "../services/UserService.js";
 import User from "../models/user.model.js";
 
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export default class AuthController {
-  static accessTokenDuration = 15 * 60 * 1000;; // 15 mins
-  static refreshTokenDuration = 7 * 24 * 60 * 60 * 1000; // 7 days
+const AuthController = {
+  ACCESS_TOKEN_DURATION: 1 * 60 * 1000, // 15 mins
+  REFRESH_TOKEN_DURATION: 7 * 24 * 60 * 60 * 1000, // 7 days
 
-  static async registerUser(req: Request, res: Response): Promise<void> {
+  registerUser: async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password } = req.body;
 
@@ -28,13 +27,13 @@ export default class AuthController {
       res.status(201)
         .cookie("accessToken", accessToken, {
           httpOnly: true,
-          maxAge: AuthController.accessTokenDuration,
+          maxAge: AuthController.ACCESS_TOKEN_DURATION,
           sameSite: "strict",
           secure: isSecure,
         })
         .cookie("refreshToken", refreshToken, {
           httpOnly: true,
-          maxAge: AuthController.refreshTokenDuration,
+          maxAge: AuthController.REFRESH_TOKEN_DURATION,
           sameSite: "strict",
           secure: isSecure,
         })
@@ -43,9 +42,9 @@ export default class AuthController {
       console.error(err);
       res.status(500).json({ success: false, message: "Failed to register user" });
     }
-  }
+  },
 
-  static async loginUser(req: Request, res: Response): Promise<void> {
+  loginUser: async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password } = req.body;
 
@@ -83,9 +82,9 @@ export default class AuthController {
       console.error(err);
       res.status(500).json({ success: false, message: "Failed to log in user" });
     }
-  }
+  },
 
-  static async refresh(req: Request, res: Response) {
+  refresh: async (req: Request, res: Response): Promise<void> => {
     const { refreshToken } = req.cookies;
 
     if (!refreshToken) {
@@ -110,13 +109,13 @@ export default class AuthController {
         httpOnly: true,
         secure: isSecure,
         sameSite: "strict",
-        maxAge: AuthController.accessTokenDuration,
+        maxAge: AuthController.ACCESS_TOKEN_DURATION,
       })
         .cookie("refreshToken", newRefreshToken, {
           httpOnly: true,
           secure: isSecure,
           sameSite: "strict",
-          maxAge: AuthController.refreshTokenDuration,
+          maxAge: AuthController.REFRESH_TOKEN_DURATION,
         })
         .status(200)
         .json({ success: true });
@@ -124,9 +123,9 @@ export default class AuthController {
       console.error(err);
       res.status(403).json({ message: "Token refresh failed", success: false });
     }
-  }
+  },
 
-  static async logout(req: Request, res: Response) {
+  logout: async (req: Request, res: Response): Promise<void> => {
     const { refreshToken } = req.cookies;
 
     if (!refreshToken) {
@@ -149,3 +148,5 @@ export default class AuthController {
     }
   }
 }
+
+export default AuthController;

@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import UserService from "../services/UserService.js";
 
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
-class UserController {
-  static async checkEmail(req: Request, res: Response): Promise<void> {
+const UserController = {
+  checkEmail: async (req: Request, res: Response): Promise<void>  => {
     try {
       const { email } = req.body;
 
