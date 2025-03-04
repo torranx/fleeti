@@ -12,6 +12,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuBadge,
   SidebarMenuButton,
@@ -19,9 +20,15 @@ import {
   SidebarMenuSub,
   SidebarRail,
 } from "@/components/ui-lib/sidebar"
+import { NavUser } from "./ui-lib/nav-user"
 
 // This is sample data.
 const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
   changes: [
     {
       file: "README.md",
@@ -67,6 +74,9 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar { ...props }>
+      <SidebarHeader className="h-16 border-b border-sidebar-border">
+        <NavUser user={ data.user } />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Changes</SidebarGroupLabel>

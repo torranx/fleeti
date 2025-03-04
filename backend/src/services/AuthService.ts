@@ -12,7 +12,7 @@ const AuthService = {
     const accessToken = await new SignJWT({ id })
       .setProtectedHeader({ alg: AuthService.ALG })
       .setIssuedAt()
-      .setExpirationTime("1m")
+      .setExpirationTime("15m")
       .sign(privateKey);
 
     const refreshToken = await new SignJWT({ id })

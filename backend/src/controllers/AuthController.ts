@@ -4,9 +4,10 @@ import Session from "../models/session.model.js";
 import mongoose, { ObjectId } from "mongoose";
 import UserService from "../services/UserService.js";
 import User from "../models/user.model.js";
+import bcrypt from "bcrypt";
 
 const AuthController = {
-  ACCESS_TOKEN_DURATION: 1 * 60 * 1000, // 15 mins
+  ACCESS_TOKEN_DURATION: 15 * 60 * 1000, // 15 mins
   REFRESH_TOKEN_DURATION: 7 * 24 * 60 * 60 * 1000, // 7 days
 
   registerUser: async (req: Request, res: Response): Promise<void> => {
@@ -47,18 +48,19 @@ const AuthController = {
   loginUser: async (req: Request, res: Response): Promise<void> => {
     try {
       const { email, password } = req.body;
+      const invalidMessage = "Your login credentials don't match an account in our system.";
 
       const user = await User.findOne({ email }).exec();
 
       if (!user) {
-        res.status(400).json({ message: "User does not exist" });
+        res.status(400).json({ message: invalidMessage });
         return;
       }
 
-      const hashedPassword = await UserService.hashPassword(password);
+      const isMatch = await bcrypt.compare(password, user.password);
 
-      if (user.password !== hashedPassword) {
-        res.status(401).json({ message: "Password is incorrect" });
+      if (!isMatch) {
+        res.status(400).json({ message: invalidMessage });
         return;
       }
 
@@ -86,10 +88,6 @@ const AuthController = {
 
   refresh: async (req: Request, res: Response): Promise<void> => {
     const { refreshToken } = req.cookies;
-
-    if (!refreshToken) {
-      res.status(401).json({ message: "Unauthorized" });
-    }
 
     try {
       const payload = await AuthService.verifyToken(refreshToken);
@@ -127,10 +125,6 @@ const AuthController = {
 
   logout: async (req: Request, res: Response): Promise<void> => {
     const { refreshToken } = req.cookies;
-
-    if (!refreshToken) {
-      res.status(401).json({ message: "Unauthorized" });
-    }
 
     try {
       const payload = await AuthService.verifyToken(refreshToken);

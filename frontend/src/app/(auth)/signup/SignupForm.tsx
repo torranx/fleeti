@@ -35,7 +35,7 @@ export default function SignupForm() {
     },
   });
 
-  const handleSubmit = async (values: z.infer<typeof formSchema>) =>{
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await apiClient.post("/auth/register", values);
 
@@ -43,11 +43,9 @@ export default function SignupForm() {
         router.push("/dashboard");
       } else {
         console.error("Unexpected response:", response.data);
-        // Optionally, show an error message to the user using a toast or alert
       }
     } catch (error) {
       console.error("Error registering user:", error);
-      // Optionally, show an error message to the user using a toast or alert
     }
   }
 
@@ -124,8 +122,14 @@ export default function SignupForm() {
           className="w-full"
           type={ isEmailSet ? "submit" : "button" }
           onClick={ isEmailSet ? undefined : handleEmailSubmit }
+          disabled={ form.formState.isSubmitting }
         >
-          { isEmailSet ? "Create account" : "Continue" }
+          {
+            isEmailSet
+              ? form.formState.isSubmitting
+                ? "Creating account..."
+                : "Create account" : "Continue"
+          }
         </Button>
       </form>
     </Form>

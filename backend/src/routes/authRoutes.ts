@@ -2,10 +2,9 @@ import { Router } from "express";
 import AuthController from "../controllers/AuthController.js";
 import { registerValidation } from "../middleware/validations/auth/registerValidation.js";
 import { validationErrorHandler } from "../middleware/validations/validationErrorHandler.js";
+import { checkRefreshToken } from "../middleware/checkRefreshToken.js";
 
 const router = Router();
-
-router.post("/refresh", AuthController.refresh);
 
 router.post(
   "/register",
@@ -15,7 +14,19 @@ router.post(
 );
 
 router.post(
+  "/login",
+  AuthController.loginUser
+)
+
+router.post(
+  "/refresh",
+  checkRefreshToken,
+  AuthController.refresh
+);
+
+router.post(
   "/logout",
+  checkRefreshToken,
   AuthController.logout
 )
 
