@@ -29,8 +29,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui-lib/sidebar"
-import apiClient from "@/lib/apiClient"
 import { useRouter } from "next/navigation"
+import apiClient from "@/lib/apiClient"
 
 export function NavUser({
   user,
@@ -54,7 +54,6 @@ export function NavUser({
       console.error("Failed to log out:", err);
     }
   }
-
   const { isMobile } = useSidebar()
 
   return (
@@ -80,7 +79,7 @@ export function NavUser({
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
             side={ isMobile ? "bottom" : "right" }
-            align="start"
+            align="end"
             sideOffset={ 4 }
           >
             <DropdownMenuLabel className="p-0 font-normal">
