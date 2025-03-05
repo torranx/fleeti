@@ -66,6 +66,14 @@ const AuthController = {
 
       const { accessToken, refreshToken } = await AuthService.generateToken(user.id);
       const isSecure = process.env.NODE_ENV === "production";
+      const userId = user?._id;
+      const session = await Session.findOne({ userId });
+
+      if (session) {
+        await AuthService.updateSession(userId, refreshToken);
+      } else {
+        await AuthService.createSession(userId, refreshToken);
+      }
 
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
