@@ -23,14 +23,9 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { DialogClose, DialogFooter, DialogHeader } from "../ui-lib/dialog"
 import { Label } from "../ui-lib/label"
 import { Input } from "../ui-lib/input"
+import useUserStore from "@/stores/useUserStore"
 
-// This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Dashboard",
@@ -59,10 +54,13 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const user = useUserStore.use.user();
+
   return (
     <Sidebar collapsible="icon" { ...props }>
       <SidebarHeader>
-        <NavUser user={ data.user } />
+        { /* TODO: add loader */ }
+        { user && <NavUser user={ user } /> }
       </SidebarHeader>
       <SidebarContent>
         <Dialog>

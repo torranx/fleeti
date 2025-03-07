@@ -87,7 +87,17 @@ const AuthController = {
         sameSite: "strict",
         secure: isSecure,
       })
-      res.status(200).json({ email, success: true, message: "User logged in successfully" });
+      res.status(200).json({
+        user: {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          name: user.name,
+          avatar: user.avatar,
+        },
+        success: true,
+        message: "User logged in successfully"
+      });
     } catch (err) {
       console.error(err);
       res.status(500).json({ success: false, message: "Failed to log in user" });

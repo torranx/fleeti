@@ -11,6 +11,8 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Link from "next/link"
+import useUserStore from "@/stores/useUserStore"
+import { LoginResponse } from "@/types/api/auth"
 
 const formSchema = z.object({
   email: z.string().email("Email is not valid"),
@@ -32,8 +34,10 @@ export default function LoginForm() {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await apiClient.post("/auth/login", values);
+      const data: LoginResponse = response.data;
 
-      if (response.data.success) {
+      if (data.success) {
+        useUserStore.getState().setUser(data.user);
         router.push("/dashboard");
       } else {
         console.error("Unexpected response:", response.data);
